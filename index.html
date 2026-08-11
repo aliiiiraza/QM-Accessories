@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QM Accessories | Premium Tech Accessories</title>
+  <meta name="description" content="QM Accessories - premium mobile and tech accessories.">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GTM: Replace GTM-XXXXXXX with your real Google Tag Manager ID later -->
+  <!--
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');
+  </script>
+  -->
+</head>
+<body>
+
+  <!-- GTM: Replace GTM-XXXXXXX with your real GTM ID later -->
+  <!--
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  -->
+
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="logo">QM<span>Accessories</span></a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="cart-btn" onclick="openCart()">
+        Cart <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">NEW COLLECTION 2026</p>
+          <h1>Upgrade your everyday <span>tech.</span></h1>
+          <p class="hero-text">Premium accessories designed for your phone, desk and daily lifestyle.</p>
+          <a href="#products" class="btn primary" onclick="trackHeroShopClick()">Shop Collection</a>
+        </div>
+        <div class="hero-card">
+          <div class="hero-product">⌁</div>
+          <div>
+            <small>Featured</small>
+            <h3>MagSafe Power Bank</h3>
+            <strong>PKR 5,999</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="container trust-grid">
+        <div>🚚 <b>Fast Delivery</b><small>Nationwide shipping</small></div>
+        <div>🔒 <b>Secure Shopping</b><small>Safe checkout experience</small></div>
+        <div>↩️ <b>Easy Returns</b><small>Simple return policy</small></div>
+        <div>💬 <b>Support</b><small>We're here to help</small></div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">OUR STORE</p>
+            <h2>Featured Accessories</h2>
+          </div>
+          <div class="search-wrap">
+            <input id="searchInput" type="search" placeholder="Search products..." oninput="renderProducts()">
+          </div>
+        </div>
+        <div class="products" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="promo" id="about">
+      <div class="container promo-box">
+        <div>
+          <p class="eyebrow">QM ACCESSORIES</p>
+          <h2>Small upgrades. Big difference.</h2>
+          <p>Built as a realistic demo store for learning e-commerce analytics and conversion tracking.</p>
+        </div>
+        <a href="#products" class="btn light">Explore Products</a>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-box">
+        <div>
+          <p class="eyebrow">NEED HELP?</p>
+          <h2>Talk to QM Accessories</h2>
+          <p>Have a question about an accessory? Send us a message.</p>
+        </div>
+        <button class="btn primary" onclick="contactStore()">Contact Us</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="logo">QM<span>Accessories</span></div>
+      <p>© 2026 QM Accessories. Demo store for analytics practice.</p>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-head">
+      <h2>Your Cart</h2>
+      <button onclick="closeCart()">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-summary">
+      <div><span>Subtotal</span><strong id="cartTotal">PKR 0</strong></div>
+      <button class="btn primary full" onclick="startCheckout()">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <div class="modal" id="checkoutModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeCheckout()">✕</button>
+      <p class="eyebrow">DEMO CHECKOUT</p>
+      <h2>Complete your order</h2>
+      <form id="checkoutForm" onsubmit="completePurchase(event)">
+        <input id="customerName" required placeholder="Full name">
+        <input id="customerPhone" required placeholder="Phone number">
+        <input id="customerEmail" type="email" required placeholder="Email address">
+        <input id="customerAddress" required placeholder="Delivery address">
+        <select id="paymentMethod" required onchange="trackPaymentInfo()">
+          <option value="">Select payment method</option>
+          <option value="cod">Cash on Delivery</option>
+          <option value="bank">Bank Transfer</option>
+        </select>
+        <button class="btn primary full" type="submit">Place Demo Order</button>
+      </form>
+      <p class="demo-note">No real payment is processed. This demo triggers the Purchase event for tracking practice.</p>
+    </div>
+  </div>
+
+  <div class="success" id="successBox">
+    <div>✓</div>
+    <h2>Order placed!</h2>
+    <p id="orderMessage"></p>
+    <button class="btn primary" onclick="closeSuccess()">Continue Shopping</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
